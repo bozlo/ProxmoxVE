@@ -1,0 +1,44 @@
+{
+  "name": "Delete Local-LVM",
+  "slug": "delete-local-lvm",
+  "categories": [
+    1
+  ],
+  "date_created": "2025-01-15",
+  "type": "pve",
+  "updateable": false,
+  "privileged": false,
+  "interface_port": null,
+  "documentation": null,
+  "website": null,
+  "logo": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/webp/linuxcontainers.webp",
+  "config_path": "",
+  "description": "This script removes the local-lvm storage and extends the local (root) storage to use the maximum available capacity.",
+  "install_methods": [
+    {
+      "type": "default",
+      "script": "tools/pve/delete-local-lvm.sh",
+      "resources": {
+        "cpu": null,
+        "ram": null,
+        "hdd": null,
+        "os": null,
+        "version": null
+      }
+    }
+  ],
+  "default_credentials": {
+    "username": null,
+    "password": null
+  },
+  "notes": [
+    {
+      "text": "⚠️ Please run the command below **only** in the Proxmox VE Shell. This script is intended for managing or enhancing the host system directly.",
+      "type": "warning"
+    },
+    {
+      "text": "bash -c \"$(curl -fsSL https://raw.githubusercontent.com/bozlo/ProxmoxVE/main/tools/pve/delete-local-lvm.sh)\"",
+      "type": "warning"
+    }
+  ]
+}
