@@ -1,0 +1,55 @@
+{
+  "name": "Enable PCI Passthrough",
+  "slug": "enable-pci-passthrough",
+  "categories": [
+      1
+  ],
+  "date_created": "2025-01-15",
+  "type": "pve",
+  "updateable": false,
+  "privileged": true,
+  "interface_port": null,
+  "documentation": "https://github.com/TechHutTV/homelab/tree/main/storage#ensure-iommu-is-enabled",
+  "website": "https://pve.proxmox.com/wiki/PCI_Passthrough",
+  "logo": null,
+  "description": "Enables PCI passthrough (IOMMU) on Proxmox VE host by configuring GRUB bootloader and required kernel modules. Supports both Intel (intel_iommu=on) and AMD (amd_iommu=on) processors.",
+  "install_methods": [
+    {
+      "type": "default",
+      "script": "tools/pve/enable-pci-passthrough.sh",
+      "resources": {
+        "cpu": null,
+        "ram": null,
+        "hdd": null,
+        "os": null,
+        "version": null
+      }
+    }
+  ],
+  "default_credentials": {
+    "username": null,
+    "password": null
+  },
+  "notes": [
+    {
+      "type": "warning",
+      "text": "⚠️ Please run the command below **only** in the Proxmox VE Shell. This script is intended for managing or enhancing the host system directly."
+    },
+    {
+      "type": "warning",
+      "text": "bash -c \"$(curl -fsSL https://raw.githubusercontent.com/bozlo/ProxmoxVE/main/tools/pve/enable-pci-passthrough.sh)\""
+    },
+    {
+      "type": "warning",
+      "text": "A reboot is REQUIRED after running this script for changes to take effect. This script modifies GRUB bootloader configuration and kernel modules. Backups are created automatically. Required kernel modules (vfio, vfio_iommu_type1, vfio_pci, vfio_virqfd) are automatically configured."
+    },
+    {
+      "type": "info",
+      "text": "The script automatically detects your CPU type (Intel or AMD) and applies the correct IOMMU parameter. After reboot, verify IOMMU is enabled with: dmesg | grep -e DMAR -e IOMMU. View IOMMU groups with: find /sys/kernel/iommu_groups/ -type l."
+    },
+    {
+      "type": "info",
+      "text": "For Intel CPUs: Adds 'intel_iommu=on' to GRUB_CMDLINE_LINUX_DEFAULT. For AMD CPUs: Adds 'amd_iommu=on' to GRUB_CMDLINE_LINUX_DEFAULT"
+    }
+  ]
+}
