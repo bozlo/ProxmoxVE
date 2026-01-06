@@ -1,0 +1,83 @@
+{
+  "name": "Network Optimization",
+  "slug": "network-optimization",
+  "categories": [
+    1
+  ],
+  "date_created": "2026-01-06",
+  "type": "pve",
+  "updateable": false,
+  "privileged": true,
+  "interface_port": null,
+  "documentation": null,
+  "website": null,
+  "logo": null,
+  "description": "Network and storage optimization tool for Proxmox VE. Configures BBR TCP congestion control, connection tracking for 10 users/10 applications, and SSD write cache optimization for 384GB RAM systems.",
+  "install_methods": [
+    {
+      "type": "default",
+      "script": "tools/pve/network-optimization.sh",
+      "resources": {
+        "cpu": null,
+        "ram": null,
+        "hdd": null,
+        "os": null,
+        "version": null
+      }
+    }
+  ],
+  "default_credentials": {
+    "username": null,
+    "password": null
+  },
+  "notes": [
+    {
+      "type": "warning",
+      "text": "⚠️ Please run the command below **only** in the Proxmox VE Shell. This script is intended for managing or enhancing the host system directly."
+    },
+    {
+      "type": "warning",
+      "text": "bash -c \"$(curl -fsSL https://raw.githubusercontent.com/bozlo/ProxmoxVE/main/tools/pve/network-optimization.sh)\""
+    },
+    {
+      "type": "info",
+      "text": "🎯 This script offers 3 optimization modes: Network only, SSD Write Cache only, or All optimizations."
+    },
+    {
+      "type": "info",
+      "text": "\ud83c\udf10 Network Optimization (10 users, 10 applications): \u2022 BBR TCP congestion control for improved throughput \u2022 Fair Queue (fq) queueing discipline \u2022 Connection tracking max: 256K connections \u2022 Connection tracking buckets: 65K (max/4) for efficient hash table"
+    },
+    {
+      "type": "info",
+      "text": "\ud83d\udcbe SSD Write Cache Optimization (384GB RAM): \u2022 dirty_background_bytes: 256MB (start background flush) \u2022 dirty_bytes: 1GB (force flush threshold) \u2022 dirty_expire_centisecs: 10 seconds (flush old data) \u2022 dirty_writeback_centisecs: 1 second (check interval)"
+    },
+    {
+      "type": "warning",
+      "text": "\u26a0\ufe0f Network settings are optimized for 10 concurrent users and 10 applications."
+    },
+    {
+      "type": "warning",
+      "text": "\u26a0\ufe0f SSD write cache settings are optimized for systems with 384GB RAM. Adjust if your system has different specifications."
+    },
+    {
+      "type": "info",
+      "text": "\ud83d\udca1 Verify network: sysctl net.core.default_qdisc net.ipv4.tcp_congestion_control"
+    },
+    {
+      "type": "info",
+      "text": "\ud83d\udca1 Check conntrack: cat /proc/sys/net/netfilter/nf_conntrack_max"
+    },
+    {
+      "type": "info",
+      "text": "\ud83d\udca1 View network config: cat /etc/sysctl.d/99-network-optimize.conf"
+    },
+    {
+      "type": "info",
+      "text": "\ud83d\udca1 Check dirty pages: sysctl vm.dirty_background_bytes vm.dirty_bytes"
+    },
+    {
+      "type": "info",
+      "text": "\ud83d\udca1 View dirty config: cat /etc/sysctl.d/99-dirty-optimize.conf"
+    }
+  ]
+}
