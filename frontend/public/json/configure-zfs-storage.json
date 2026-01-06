@@ -1,0 +1,63 @@
+{
+  "name": "Configure ZFS Storage",
+  "slug": "configure-zfs-storage",
+  "categories": [
+    1
+  ],
+  "date_created": "2025-01-15",
+  "type": "pve",
+  "updateable": false,
+  "privileged": true,
+  "interface_port": null,
+  "documentation": "https://openzfs.github.io/openzfs-docs/Performance%20and%20Tuning/Module%20Parameters.html",
+  "website": "https://pve.proxmox.com/wiki/ZFS_on_Linux",
+  "logo": null,
+  "description": "Comprehensive ZFS storage configuration tool for Proxmox VE. Configure ZFS ARC memory limits (25-33% recommended) and dataset record sizes (block size) for optimal performance and volblocksize for VM",
+  "install_methods": [
+    {
+      "type": "default",
+      "script": "tools/pve/configure-zfs-storage.sh",
+      "resources": {
+        "cpu": null,
+        "ram": null,
+        "hdd": null,
+        "os": null,
+        "version": null
+      }
+    }
+  ],
+  "default_credentials": {
+    "username": null,
+    "password": null
+  },
+  "notes": [
+    {
+      "type": "warning",
+      "text": "⚠️ Please run the command below **only** in the Proxmox VE Shell. This script is intended for managing or enhancing the host system directly."
+    },
+    {
+      "type": "warning",
+      "text": "bash -c \"$(curl -fsSL https://raw.githubusercontent.com/bozlo/ProxmoxVE/main/tools/pve/configure-zfs-storage.sh)\""
+    },
+    {
+      "type": "warning",
+      "text": "⚠️ A reboot is REQUIRED after changing ARC settings for changes to take effect."
+    },
+    {
+      "type": "info",
+      "text": "🎯 This script offers three configuration modes: ARC only, Record Size for CT only, volblocksize for VM only or All."
+    },
+    {
+      "type": "info",
+      "text": "📊 ZFS ARC (Memory Cache): Recommended 25-33% of total system memory for general use, up to 50% for storage-heavy workloads. 💡 After reboot (for ARC changes), verify with: arc_summary"
+    },
+    {
+      "type": "info",
+      "text": "📦 Record Size (Block Size) Recommendations by Use Case: • 4K-8K: Database workloads (MySQL, PostgreSQL) • 16K-32K: General purpose, small files • 64K-128K: Default, balanced for most workloads (recommended) • 256K-512K: Large files, media, backups • 1M: Very large files, video editing 💡 Check record sizes: zfs get recordsize. 🔧 The script can configure individual or all CT and datasets at once."
+    },
+    {
+      "type": "info",
+      "text": "📦 volblocksize for VM is updated in Proxmox storage.cfg with blocksize parameter for Web UI compatibility.💡 View Proxmox storage config: cat /etc/pve/storage.cfg. ⚠️ Record size changes only affect NEW data. Existing data retains its original record size."
+    }
+  ]
+}
