@@ -1,0 +1,83 @@
+{
+  "name": "System Optimization",
+  "slug": "system-optimization",
+  "categories": [
+    1
+  ],
+  "date_created": "2025-01-5",
+  "type": "pve",
+  "updateable": false,
+  "privileged": true,
+  "interface_port": null,
+  "documentation": null,
+  "website": null,
+  "logo": null,
+  "description": "System optimization tool to reduce SSD wear and improve performance on Proxmox VE. Configures journald to use volatile storage (RAM) and enables noatime on root filesystem to minimize unnecessary write operations.",
+  "install_methods": [
+    {
+      "type": "default",
+      "script": "tools/pve/system-optimization.sh",
+      "resources": {
+        "cpu": null,
+        "ram": null,
+        "hdd": null,
+        "os": null,
+        "version": null
+      }
+    }
+  ],
+  "default_credentials": {
+    "username": null,
+    "password": null
+  },
+  "notes": [
+    {
+      "type": "warning",
+      "text": "⚠️ Please run the command below **only** in the Proxmox VE Shell. This script is intended for managing or enhancing the host system directly."
+    },
+    {
+      "type": "warning",
+      "text": "bash -c \"$(curl -fsSL https://raw.githubusercontent.com/bozlo/ProxmoxVE/main/tools/pve/system-optimization.sh)\""
+    },
+    {
+      "type": "info",
+      "text": "🎯 This script offers 5 optimization modes: journald only, noatime only, ZFS atime off, Swap size, Swappiness, or All."
+    },
+    {
+      "type": "info",
+      "text": "📝 journald Optimization (SSD Wear Reduction):   • Stores system logs in volatile memory (/run) instead of disk • Limits journal size to 64MB maximum • Keeps 128MB free in /run partition • Disables compression to reduce CPU usage • Syncs to disk every 10 minutes instead of constantly"
+    },
+    {
+      "type": "warning",
+      "text": "⚠️ journald logs stored in RAM will be LOST on reboot. Critical errors still logged to /var/log/syslog."
+    },
+    {
+      "type": "info",
+      "text": "💾 noatime Optimization (Reduce Write Operations): • Disables file access time updates on root filesystem • Eliminates write operations when reading files • Significantly reduces SSD wear • Modifies /etc/fstab and remounts filesystem automatically"
+    },
+    {
+      "type": "warning",
+      "text": "⚠️ A reboot may be required for noatime changes to fully take effect."
+    },
+    {
+      "type": "info",
+      "text": "💡 Verify journald: journalctl --disk-usage"
+    },
+    {
+      "type": "info",
+      "text": "💡 Check noatime: mount | grep ' / ' or View fstab: cat /etc/fstab"
+    },
+    {
+      "type": "info",
+      "text": "💡 Check swap: swapon --show && free -h"
+    },
+    {
+      "type": "info",
+      "text": "💡 Check swappiness: sysctl vm.swappiness"
+    },
+    {
+      "type": "info",
+      "text": "ZFS Optimization: Disables access time updates on all ZFS pools (zfs set atime=off pool, zfs set xattr=sa pool, zfs set acltype=posixacl pool) to reduce unnecessary writes. Verify ZFS term: zfs get -r [term]"
+    }
+  ]
+}
