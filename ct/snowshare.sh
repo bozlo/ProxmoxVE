@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 source <(curl -fsSL https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/misc/build.func)
-# Copyright (c) 2021-2025 community-scripts ORG
+# Copyright (c) 2021-2026 community-scripts ORG
 # Author: TuroYT
 # License: MIT | https://github.com/community-scripts/ProxmoxVE/raw/main/LICENSE
 # Source: https://github.com/TuroYT/snowshare
@@ -33,7 +33,7 @@ function update_script() {
     systemctl stop snowshare
     msg_ok "Stopped Service"
 
-    fetch_and_deploy_gh_release "snowshare" "TuroYT/snowshare"
+    fetch_and_deploy_gh_release "snowshare" "TuroYT/snowshare" "tarball"
 
     msg_info "Updating Snowshare"
     cd /opt/snowshare
@@ -54,7 +54,7 @@ start
 build_container
 description
 
-msg_ok "Completed Successfully!\n"
+msg_ok "Completed successfully!\n"
 echo -e "${CREATING}${GN}${APP} setup has been successfully initialized!${CL}"
 echo -e "${INFO}${YW} Access it using the following URL:${CL}"
 echo -e "${TAB}${GATEWAY}${BGN}http://${IP}:3000${CL}"

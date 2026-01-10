@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Copyright (c) 2021-2025 community-scripts ORG
+# Copyright (c) 2021-2026 community-scripts ORG
 # Author: MickLesk (CanbiZ)
 # License: MIT | https://github.com/community-scripts/ProxmoxVE/raw/main/LICENSE
 # Source: https://github.com/dedicatedcode/reitti
@@ -24,7 +24,7 @@ msg_ok "Installed Dependencies"
 
 JAVA_VERSION="25" setup_java
 PG_VERSION="17" PG_MODULES="postgis" setup_postgresql
-PG_DB_NAME="reitti_db" PG_DB_USER="reitti" setup_postgresql_db
+PG_DB_NAME="reitti_db" PG_DB_USER="reitti" PG_DB_EXTENSIONS="postgis" setup_postgresql_db
 
 msg_info "Configuring RabbitMQ"
 RABBIT_USER="reitti"

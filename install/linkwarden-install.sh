@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Copyright (c) 2021-2025 community-scripts ORG
+# Copyright (c) 2021-2026 community-scripts ORG
 # Author: MickLesk (Canbiz)
 # License: MIT | https://github.com/community-scripts/ProxmoxVE/raw/main/LICENSE
 # Source: https://linkwarden.app/
@@ -29,7 +29,7 @@ if [[ "${prompt,,}" =~ ^(y|yes)$ ]]; then
   setup_adminer
 fi
 
-fetch_and_deploy_gh_release "linkwarden" "linkwarden/linkwarden"
+fetch_and_deploy_gh_release "linkwarden" "linkwarden/linkwarden" "tarball"
 
 msg_info "Installing Linkwarden (Patience)"
 SECRET_KEY="$(head /dev/urandom | tr -dc A-Za-z0-9 | head -c 32)"

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Copyright (c) 2021-2025 community-scripts ORG
+# Copyright (c) 2021-2026 community-scripts ORG
 # Author: [YourGitHubUsername]
 # License: MIT | https://github.com/community-scripts/ProxmoxVE/raw/main/LICENSE
 # Source: [SOURCE_URL e.g. https://github.com/example/app]
@@ -53,7 +53,7 @@ msg_ok "Installed Dependencies"
 # setup_mongodb                            # Install MongoDB
 #
 # --- GitHub Release (PREFERRED METHOD) ---
-# fetch_and_deploy_gh_release "appname" "owner/repo"  # Downloads, extracts, tracks version
+# fetch_and_deploy_gh_release "appname" "owner/repo" "tarball"  # Downloads, extracts, tracks version
 # fetch_and_deploy_gh_release "appname" "owner/repo" "tarball" "latest" "/opt/appname"
 # fetch_and_deploy_gh_release "appname" "owner/repo" "prebuild" "latest" "/opt/appname" "app-*.tar.gz"
 #

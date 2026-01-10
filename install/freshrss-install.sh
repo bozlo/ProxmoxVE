@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Copyright (c) 2021-2025 community-scripts ORG
+# Copyright (c) 2021-2026 community-scripts ORG
 # Author: bvdberg01
 # License: MIT | https://github.com/community-scripts/ProxmoxVE/raw/main/LICENSE
 # Source: https://github.com/FreshRSS/FreshRSS
@@ -30,7 +30,7 @@ $STD sudo -u postgres psql -c "CREATE DATABASE $DB_NAME WITH OWNER $DB_USER TEMP
 } >>~/freshrss.creds
 msg_ok "Set up PostgreSQL"
 
-fetch_and_deploy_gh_release "freshrss" "FreshRSS/FreshRSS"
+fetch_and_deploy_gh_release "freshrss" "FreshRSS/FreshRSS" "tarball"
 
 msg_info "Configuring FreshRSS"
 cd /opt/freshrss

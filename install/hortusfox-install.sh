@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Copyright (c) 2021-2025 community-scripts ORG
+# Copyright (c) 2021-2026 community-scripts ORG
 # Author: MickLesk (CanbiZ)
 # License: MIT | https://github.com/community-scripts/ProxmoxVE/raw/main/LICENSE
 # Source: https://github.com/danielbrendel/hortusfox-web
@@ -36,7 +36,7 @@ $STD mariadb -u root -e "GRANT ALL PRIVILEGES ON $DB_NAME.* TO '$DB_USER'@'local
 } >>~/hortusfox.creds
 msg_ok "Set up database"
 
-fetch_and_deploy_gh_release "hortusfox" "danielbrendel/hortusfox-web"
+fetch_and_deploy_gh_release "hortusfox" "danielbrendel/hortusfox-web" "tarball"
 
 msg_info "Configuring .env"
 cp /opt/hortusfox/.env.example /opt/hortusfox/.env

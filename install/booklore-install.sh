@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Copyright (c) 2021-2025 community-scripts ORG
+# Copyright (c) 2021-2026 community-scripts ORG
 # Author: MickLesk (CanbiZ)
 # License: MIT | https://github.com/community-scripts/ProxmoxVE/raw/main/LICENSE
 # Source: https://github.com/booklore-app/BookLore
@@ -17,7 +17,7 @@ msg_info "Installing Dependencies"
 $STD apt-get install -y nginx
 msg_ok "Installed Dependencies"
 
-fetch_and_deploy_gh_release "booklore" "booklore-app/BookLore"
+fetch_and_deploy_gh_release "booklore" "booklore-app/BookLore" "tarball"
 JAVA_VERSION="21" setup_java
 NODE_VERSION="22" setup_nodejs
 setup_mariadb
